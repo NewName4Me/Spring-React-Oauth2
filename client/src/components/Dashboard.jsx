@@ -23,7 +23,7 @@ function Dashboard() {
                 <div>
                     <p>Nombre: {user.name}</p>
                     <p>Email: {user.email}</p>
-                    {user.picture && <img src={user.picture} alt="Avatar" referrerPolicy='no-referrer'/>}
+                    {user.picture ? <img src={user.picture} alt="Avatar" referrerPolicy='no-referrer'/> : <img src={user.avatar_url} alt="Avatar" referrerPolicy='no-referrer'/>}
                 </div>
             ) : (
                 <p>Cargando información del usuario</p>
