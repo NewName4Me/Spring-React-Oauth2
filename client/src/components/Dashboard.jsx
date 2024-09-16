@@ -1,9 +1,31 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 
 function Dashboard() {
+
+    const [user, setUser] = useState();
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/user-info", { withCredentials: true })
+            .then(response => {
+                setUser(response.data);
+            })
+            .catch(error => {
+                console.log("Ocurrio un error:", error);
+            });
+    }, []);
+
     return (
         <div>
             <h2>Dashboard</h2>
+            {user ? (
+                <div>
+                    <p>Nombre: {user.name}</p>
+                    <p>Email: {user.email}</p>
+                </div>
+            ) : (
+                <p>Cargando información del usuario</p>
+            )}
         </div>
     )
 }
