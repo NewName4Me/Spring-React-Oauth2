@@ -18,7 +18,9 @@ public class SecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizedRequest -> authorizedRequest.anyRequest().authenticated())
-                .formLogin(form -> form.defaultSuccessUrl("/hello",true));
+                //.formLogin(form -> form.defaultSuccessUrl("/hello",true))
+                .oauth2Login(oauth2-> oauth2.defaultSuccessUrl("/hello",true))
+        ;
 
         return http.build();
     }
